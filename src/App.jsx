@@ -1,10 +1,13 @@
-import { useState } from 'react'
-import { FaPlusCircle, FaTrash, FaRegCheckSquare } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
+import { FaPlusCircle, FaTrash } from 'react-icons/fa'
 
 import './styles/App.css'
 
 function App() {
-  const [todoList, setTodoList] = useState([])
+  const [todoList, setTodoList] = useState(() => {
+    const storageTodoList = localStorage.getItem('todos')
+    return JSON.parse(storageTodoList) || []
+  })
   const [todo, setTodo] = useState('')
 
   const handleAddTodo = () => {
@@ -24,6 +27,10 @@ function App() {
     )
   }
 
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todoList))
+  }, [todoList])
+
   return (
     <div className="todo-app">
       <div className="form-container">
@@ -33,7 +40,7 @@ function App() {
             name="new-todo"
             id="new-todo"
             placeholder="Adicionar item a lista"
-            className="todo-input"
+            className="input-todo"
             value={todo}
             onChange={({ target }) => setTodo(target.value)}
           />
@@ -46,8 +53,10 @@ function App() {
       <div className="todo-container">
         <ul className="todoList">
           {todoList.map((item, index) => (
-            <div key={index} className={item.done ? 'todo completed' : 'todo'}>
-              <li>{item.todo}</li>
+            <li key={index} className={item.done ? 'todo completed' : 'todo'}>
+              <span onClick={() => handleCompleteTodo(item.todo)}>
+                {item.todo}
+              </span>
               <button
                 type="button"
                 className="delete-todo"
@@ -56,15 +65,7 @@ function App() {
               >
                 <FaTrash />
               </button>
-              <button
-                type="button"
-                className="complete-todo"
-                title={`Completar ${item.todo}`}
-                onClick={() => handleCompleteTodo(item.todo)}
-              >
-                <FaRegCheckSquare />
-              </button>
-            </div>
+            </li>
           ))}
         </ul>
       </div>

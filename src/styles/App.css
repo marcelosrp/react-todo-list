@@ -35,14 +35,14 @@ body {
   display: flex;
 }
 
-form {
+.form-todo {
   background-color: var(--mainWhite);
   display: flex;
   justify-content: space-between;
   width: 35rem;
 }
 
-form input {
+.input-todo {
   flex: 1;
 }
 
@@ -55,13 +55,13 @@ form button {
   padding: 1.5rem;
 }
 
-form button {
+.form-todo button {
   color: var(--primaryColor);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
-form button:hover {
+.form-todo button:hover {
   background-color: var(--primaryColor);
   color: var(--mainWhite);
 }
@@ -71,6 +71,12 @@ form button:hover {
 }
 
 .todo {
+  color: var(--primaryColor);
+  flex: 1;
+  font-size: 1.4rem;
+  font-weight: bold;
+  list-style-type: none;
+
   align-items: center;
   background-color: var(--secondaryColor);
   display: flex;
@@ -79,34 +85,33 @@ form button:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.todo li {
-  color: var(--primaryColor);
-  flex: 1;
-  font-size: 1.4rem;
-  font-weight: bold;
-  list-style-type: none;
-  padding: 0 1rem;
-  /* line clamp */
+.todo span {
+  cursor: pointer;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.todo button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.6rem;
-  padding: 1rem;
-}
-
-.complete-todo {
-  color: var(--primaryColor);
+  padding: 0 1rem;
+  width: 100%;
 }
 
 .delete-todo {
   color: var(--mainRed);
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.delete-todo:hover {
+  background-color: var(--mainRed);
+  color: var(--mainWhite);
 }
 
 .completed {
