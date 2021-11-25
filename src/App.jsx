@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { FaPlusCircle, FaTrash } from 'react-icons/fa'
+import { FaPlusCircle } from 'react-icons/fa'
+import TodoList from './components/todoList'
 
 import './styles/App.css'
 
@@ -51,23 +52,11 @@ function App() {
       </div>
 
       <div className="todo-container">
-        <ul className="todoList">
-          {todoList.map((item, index) => (
-            <li key={index} className={item.done ? 'todo completed' : 'todo'}>
-              <span onClick={() => handleCompleteTodo(item.todo)}>
-                {item.todo}
-              </span>
-              <button
-                type="button"
-                className="delete-todo"
-                title={`Deletar ${item.todo}`}
-                onClick={() => handleRemoveTodo(item.todo)}
-              >
-                <FaTrash />
-              </button>
-            </li>
-          ))}
-        </ul>
+        <TodoList
+          todoList={todoList}
+          handleRemoveTodo={handleRemoveTodo}
+          handleCompleteTodo={handleCompleteTodo}
+        />
       </div>
     </div>
   )
