@@ -31,12 +31,22 @@ body {
   justify-content: center;
 }
 
+form input,
+form button {
+  background-color: var(--mainWhite);
+  border: none;
+  font-size: 1.4rem;
+  outline: none;
+  padding: 1.5rem;
+}
+
 .form-container {
   display: flex;
 }
 
 .form-todo {
   background-color: var(--mainWhite);
+  border: 1px solid transparent;
   display: flex;
   justify-content: space-between;
   width: 35rem;
@@ -46,13 +56,8 @@ body {
   flex: 1;
 }
 
-form input,
-form button {
-  background-color: var(--mainWhite);
-  border: none;
-  font-size: 1.4rem;
-  outline: none;
-  padding: 1.5rem;
+.form-todo.todo-error {
+  border-color: var(--mainRed);
 }
 
 .form-todo button {
@@ -71,16 +76,15 @@ form button {
 }
 
 .todo {
+  align-items: center;
+  background-color: var(--secondaryColor);
   color: var(--primaryColor);
+  display: flex;
   flex: 1;
   font-size: 1.4rem;
   font-weight: bold;
-  list-style-type: none;
-
-  align-items: center;
-  background-color: var(--secondaryColor);
-  display: flex;
   justify-content: space-between;
+  list-style-type: none;
   margin: 0.5rem 0;
   transition: all 0.3s ease-in-out;
 }
@@ -91,7 +95,7 @@ form button {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  padding: 0 1rem;
+  padding: 1rem;
   width: 100%;
 }
 
