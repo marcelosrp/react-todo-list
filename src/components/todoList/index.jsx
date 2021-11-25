@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { FaTrash } from 'react-icons/fa'
 
 export default function TodoList({
@@ -22,4 +23,10 @@ export default function TodoList({
       ))}
     </ul>
   )
+}
+
+TodoList.propTypes = {
+  todoList: PropTypes.array,
+  handleCompleteTodo: PropTypes.func.isRequired,
+  handleRemoveTodo: PropTypes.func.isRequired,
 }
