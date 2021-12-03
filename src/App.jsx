@@ -13,7 +13,9 @@ function App() {
   const [hasError, setHasError] = useState(false)
   const inputEl = useRef(null)
 
-  const handleAddTodo = () => {
+  const handleAddTodo = e => {
+    e.preventDefault()
+
     if (todo === '') {
       setHasError(true)
       inputEl.current.focus()
@@ -49,7 +51,10 @@ function App() {
   return (
     <div className="todo-app">
       <div className="form-container">
-        <form className={hasError ? 'form-todo todo-error' : 'form-todo'}>
+        <form
+          className={hasError ? 'form-todo todo-error' : 'form-todo'}
+          onSubmit={handleAddTodo}
+        >
           <input
             type="text"
             name="new-todo"
@@ -60,7 +65,7 @@ function App() {
             value={todo}
             onChange={({ target }) => handleChangeInputTodo(target)}
           />
-          <button onClick={handleAddTodo} type="button">
+          <button type="button">
             <FaPlusCircle />
           </button>
         </form>
