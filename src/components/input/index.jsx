@@ -1,23 +1,20 @@
+import { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 
-export default function Input({
-  type = 'text',
-  id,
-  todo,
-  handleChangeInputTodo,
-}) {
-  return (
-    <input
-      placeholder="Adicionar item a lista"
-      className="input-todo"
-      type={type}
-      name={id}
-      id={id}
-      value={todo}
-      onChange={({ target }) => handleChangeInputTodo(target)}
-    />
-  )
-}
+const Input = (props, ref) => (
+  <input
+    placeholder="Adicionar item a lista"
+    className="input-todo"
+    ref={ref}
+    type={props.type || 'text'}
+    name={props.id}
+    id={props.id}
+    value={props.todo}
+    onChange={({ target }) => props.handleChangeInputTodo(target)}
+  />
+)
+
+export default forwardRef(Input)
 
 Input.propTypes = {
   type: PropTypes.string,

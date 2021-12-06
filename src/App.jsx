@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FaPlusCircle } from 'react-icons/fa'
 import Input from './components/input'
 import Button from './components/button'
@@ -14,11 +14,14 @@ function App() {
   const [todo, setTodo] = useState('')
   const [hasError, setHasError] = useState(false)
 
+  const inputRef = useRef(null)
+
   const handleAddTodo = e => {
     e.preventDefault()
 
     if (todo === '') {
       setHasError(true)
+      inputRef.current.focus()
       return
     }
 
@@ -57,6 +60,7 @@ function App() {
         >
           <Input
             id="new-todo"
+            ref={inputRef}
             todo={todo}
             handleChangeInputTodo={handleChangeInputTodo}
           />
