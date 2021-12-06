@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { FaPlusCircle } from 'react-icons/fa'
+import Input from './components/input'
+import Button from './components/button'
 import TodoList from './components/todoList'
 
 import './styles/App.css'
@@ -11,15 +13,13 @@ function App() {
   })
   const [todo, setTodo] = useState('')
   const [hasError, setHasError] = useState(false)
-  const inputEl = useRef(null)
 
   const handleAddTodo = e => {
     e.preventDefault()
 
     if (todo === '') {
       setHasError(true)
-      inputEl.current.focus()
-      return false
+      return
     }
 
     setTodoList(prevState => [...prevState, { todo, done: false }])
@@ -55,19 +55,14 @@ function App() {
           className={hasError ? 'form-todo todo-error' : 'form-todo'}
           onSubmit={handleAddTodo}
         >
-          <input
-            type="text"
-            name="new-todo"
+          <Input
             id="new-todo"
-            placeholder="Adicionar item a lista"
-            className="input-todo"
-            ref={inputEl}
-            value={todo}
-            onChange={({ target }) => handleChangeInputTodo(target)}
+            todo={todo}
+            handleChangeInputTodo={handleChangeInputTodo}
           />
-          <button type="button">
+          <Button type="submit">
             <FaPlusCircle />
-          </button>
+          </Button>
         </form>
       </div>
 
