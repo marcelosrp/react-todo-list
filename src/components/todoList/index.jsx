@@ -7,7 +7,7 @@ export default function TodoList({
   handleRemoveTodo,
 }) {
   return (
-    <ul className="todoList">
+    <>
       {todoList.map((item, index) => (
         <li key={index} className={item.done ? 'todo completed' : 'todo'}>
           <span onClick={() => handleCompleteTodo(item.todo)}>{item.todo}</span>
@@ -21,7 +21,7 @@ export default function TodoList({
           </button>
         </li>
       ))}
-    </ul>
+    </>
   )
 }
 

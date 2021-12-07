@@ -71,11 +71,13 @@ function App() {
       </div>
 
       <div className="todo-container">
-        <TodoList
-          todoList={todoList}
-          handleRemoveTodo={handleRemoveTodo}
-          handleCompleteTodo={handleCompleteTodo}
-        />
+        <ul className="todoList">
+          <TodoList
+            todoList={todoList}
+            handleRemoveTodo={handleRemoveTodo}
+            handleCompleteTodo={handleCompleteTodo}
+          />
+        </ul>
       </div>
     </div>
   )
